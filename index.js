@@ -1,10 +1,49 @@
 const express = require('express');
-const port    = process.env.PORT || 4000;
 const app     = express();
-const dest    = `${__dirname}/public`;
+//const dest    = `${__dirname}/public`;
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+mongoose.plugin(require('./lib/globalToJSON'));
+const routes = require('./config/routes');
+const customResponses = require('./lib/customResponses');
+const errorHandler = require('./lib/errorHandler');
+const { port, env, dbURI } = require('./config/environment');
 
-app.use(express.static(dest));
+app.use(express.static(`${__dirname}/public`));
 
-app.get('/*', (req, res) => res.sendFile(`${dest}/index.html`));
+mongoose.connect(dbURI, { useMongoClient: true });
 
-app.listen(port, () => console.log(`Express has started on port: ${port}`));
+if (env !== 'test') app.use(morgan('dev'));
+
+app.use(bodyParser.json());
+app.use(customResponses);
+app.use(routes);
+app.use(errorHandler);
+
+app.listen(port, () => console.log(`Express is listening on port ${port}`));
+
+
+
+//const express = require('express');
+
+
+// const morgan = require('morgan');
+// const bodyParser = require('body-parser');
+// const mongoose = require('mongoose');
+// mongoose.Promise = require('bluebird');
+// mongoose.connect(dbURI, { useMongoClient: true });
+// const { port, env, dbURI } = require('./config/environment');
+// const app = express();
+//
+// app.use(express.static(dest));
+// app.use(bodyParser.json());
+// app.use(customResponses);
+// app.use(routes);
+// app.use(errorHandler);
+//
+//
+// app.get('/*', (req, res) => res.sendFile(`${dest}/index.html`));
+//
+// app.listen(port, () => console.log(`Express has started on port: ${port}`));
