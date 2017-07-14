@@ -23,27 +23,3 @@ app.use(routes);
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
-
-
-
-//const express = require('express');
-
-
-// const morgan = require('morgan');
-// const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
-// mongoose.Promise = require('bluebird');
-// mongoose.connect(dbURI, { useMongoClient: true });
-// const { port, env, dbURI } = require('./config/environment');
-// const app = express();
-//
-// app.use(express.static(dest));
-// app.use(bodyParser.json());
-// app.use(customResponses);
-// app.use(routes);
-// app.use(errorHandler);
-//
-//
-// app.get('/*', (req, res) => res.sendFile(`${dest}/index.html`));
-//
-// app.listen(port, () => console.log(`Express has started on port: ${port}`));

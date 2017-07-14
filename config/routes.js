@@ -6,7 +6,7 @@ router.route('/players')
   .get(playersController.index)
   .post(playersController.create);
 
-router.route('/player/:id')
+router.route('/players/:id')
   .get(playersController.show)
   .put(playersController.update)
   .delete(playersController.delete);
