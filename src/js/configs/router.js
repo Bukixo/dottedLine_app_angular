@@ -22,7 +22,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'PlayersShowCtrl as playersShow'
     })
     .state('playersEdit', {
-      url: '/players/:id',
+      url: '/players/:id/edit',
       templateUrl: '/js/views/edit.html',
       controller: 'PlayersEditCtrl as playersEdit'
     })

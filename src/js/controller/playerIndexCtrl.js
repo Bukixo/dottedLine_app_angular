@@ -4,7 +4,7 @@ angular
   .controller('PlayersIndexCtrl', PlayersIndexCtrl)
   .controller('PlayersShowCtrl', PlayersShowCtrl)
   .controller('PlayersNewCtrl', PlayersNewCtrl)
-  .controller('BirdsEditCtrl', BirdsEditCtrl);
+  .controller('PlayersEditCtrl', PlayersEditCtrl);
 
 
 PlayersIndexCtrl.$inject = ['Player'];
@@ -40,7 +40,7 @@ function PlayersShowCtrl(Player, $stateParams, $state) {
   function deletePlayer() {
     vm.player
       .$remove()
-      .then(() => $state.go('playerIndex'));
+      .then(() => $state.go('playersIndex'));
   }
 
   vm.delete = deletePlayer;
@@ -49,19 +49,19 @@ function PlayersShowCtrl(Player, $stateParams, $state) {
 
   ///////////////////////////////////////////////////////////////////////////
 
-  BirdsEditCtrl.$inject = ['Bird', '$stateParams', '$state'];
-  function BirdsEditCtrl(Bird, $stateParams, $state) {
-    const vm = this;
+PlayersEditCtrl.$inject = ['Player', '$stateParams', '$state'];
+function PlayersEditCtrl(Player, $stateParams, $state) {
+  const vm = this;
 
-    vm.bird = Bird.get($stateParams);
+  vm.player = Player.get($stateParams);
 
-    function birdsUpdate() {
-      vm.bird
-        .$update()
-        .then(() => $state.go('birdsShow', $stateParams));
-    }
-    vm.update = birdsUpdate;
+  function playersUpdate() {
+    vm.player
+      .$update()
+      .then(() => $state.go('playersShow', $stateParams));
   }
+  vm.update = playersUpdate;
+}
 
 
 

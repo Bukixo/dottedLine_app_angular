@@ -6,6 +6,7 @@
 {{ playersShow.player.team}}
 
 <button ng-click="playersShow.delete()">Delete</button>
+<a ui-sref="playersEdit({ id: playersShow.player.id })">EDIT</a>
 <!-- <h2>
     <a ui-sref="show({ id: wonderItem.id })">{{ wonderItem.name }} - {{ wonderItem.country }}</a>
   </h2> -->
