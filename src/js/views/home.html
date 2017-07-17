@@ -2,16 +2,8 @@
 sdf
 <ul>
   <li ng-repeat="player in playersIndex.all"> <a ui-sref="playersShow({ id: player.id })"> {{ player.name }} </a>
-    <!-- <button ng-click="players.playersDelete(player)">Delete</button></li> -->
 </ul>
 
-<!-- <p>About to add: {{ players.newPlayer }}</p>
 
-<form ng-submit="players.playersCreate()">
-  <input type="text" name="" value="" ng-model="players.newPlayer.name" placeholder="name">
-  <input type="number" name="" value="" ng-model="players.newPlayer.age" placeholder="age">
-  <input type="text" name="" value="" ng-model="players.newPlayer.team" placeholder="team">
-  <input type="number" name="" value="" ng-model="players.newPlayer.avGoals" placeholder="goals">
-  <input type="number" name="" value="" ng-model="players.newPlayer.avAssists" placeholder="assists">
-  <input type="submit" value='Save player'>
-</form> -->
+
+<a ui-sref="playersNew"> NewPlayer</a>

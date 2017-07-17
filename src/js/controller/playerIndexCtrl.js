@@ -3,7 +3,7 @@ angular
   .module('dl_app')
   .controller('PlayersIndexCtrl', PlayersIndexCtrl)
   .controller('PlayersShowCtrl', PlayersShowCtrl)
-  .controller('BirdsNewCtrl', BirdsNewCtrl)
+  .controller('PlayersNewCtrl', PlayersNewCtrl)
   .controller('BirdsEditCtrl', BirdsEditCtrl);
 
 
@@ -15,21 +15,19 @@ function PlayersIndexCtrl(Player){
 }
   //////////////////////////////////////////////////////////////////
 
-  BirdsNewCtrl.$inject = ['Bird', '$state'];
-  function BirdsNewCtrl(Bird, $state) {
-    const vm = this;
-    vm.bird = {};
+PlayersNewCtrl.$inject = ['Player', '$state'];
+function PlayersNewCtrl(Player, $state) {
+  const vm = this;
+  vm.player = {};
 
-    // const Bird = new Bird('/api/birds/:id', { id: '@id'});
-
-    function birdsCreate() {
-      Bird
-        .save(vm.bird)
-        .$promise
-        .then(() => $state.go('birdsIndex'));
-    }
-    vm.create = birdsCreate;
+  function playersCreate() {
+    Player
+      .save(vm.player)
+      .$promise
+      .then(() => $state.go('playersIndex'));
   }
+  vm.create = playersCreate;
+}
 
   //////////////////////////////////////////////////////////////////////////
 

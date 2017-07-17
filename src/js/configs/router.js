@@ -20,7 +20,19 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/players/:id',
       templateUrl: '/js/views/show.html',
       controller: 'PlayersShowCtrl as playersShow'
+    })
+    .state('playersEdit', {
+      url: '/players/:id',
+      templateUrl: '/js/views/edit.html',
+      controller: 'PlayersEditCtrl as playersEdit'
+    })
+    .state('playersNew', {
+      url: '/players/new',
+      templateUrl: '/js/views/new.html',
+      controller: 'PlayersNewCtrl as playersNew'
     });
+
+
 
   $urlRouterProvider.otherwise('/');
 }
