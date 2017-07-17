@@ -19,7 +19,7 @@ if (env !== 'test') app.use(morgan('dev'));
 
 app.use(bodyParser.json());
 app.use(customResponses);
-app.use(routes);
+app.use('/api', routes);
 app.use(errorHandler);
 
 app.listen(port, () => console.log(`Express is listening on port ${port}`));
