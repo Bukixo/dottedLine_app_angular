@@ -3,8 +3,6 @@ angular
   .module('dl_app')
   .controller('PlayersIndexCtrl', PlayersIndexCtrl);
 
-
-
 PlayersIndexCtrl.$inject = ['Player'];
 function PlayersIndexCtrl(Player){
   const vm = this;

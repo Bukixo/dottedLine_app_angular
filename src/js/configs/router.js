@@ -9,7 +9,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('playersIndex', {
       url: '/',
-      templateUrl: '/js/views/home.html',
+      templateUrl: '/js/views/playerIndex.html',
       controller: 'PlayersIndexCtrl as playersIndex'
     })
     .state('about', {
@@ -18,7 +18,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('playersShow', {
       url: '/players/:id',
-      templateUrl: '/js/views/show.html',
+      templateUrl: '/js/views/playerShow.html',
       controller: 'PlayersShowCtrl as playersShow'
     })
     .state('playersEdit', {
@@ -30,8 +30,18 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/players/new',
       templateUrl: '/js/views/new.html',
       controller: 'PlayersNewCtrl as playersNew'
+    })
+///////////------------------games-------------------//////////////
+    .state('gamesIndex', {
+      url: '/games',
+      templateUrl: '/js/views/gameIndex.html',
+      controller: 'GamesIndexCtrl as gamesIndex'
+    })
+    .state('gamesShow', {
+      url: '/games/:id',
+      templateUrl: '/js/views/gameShow.html',
+      controller: 'GamesShowCtrl as gamesShow'
     });
-
 
 
   $urlRouterProvider.otherwise('/');
