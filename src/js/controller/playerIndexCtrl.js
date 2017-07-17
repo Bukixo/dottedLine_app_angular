@@ -1,51 +1,122 @@
 // app.js is the main JS file which you should define your Angular module
 angular
   .module('dl_app')
-  .controller('PlayersCtrl', PlayersCtrl);
+  .controller('PlayersIndexCtrl', PlayersIndexCtrl)
+  .controller('PlayersShowCtrl', PlayersShowCtrl)
+  .controller('BirdsNewCtrl', BirdsNewCtrl)
+  .controller('BirdsEditCtrl', BirdsEditCtrl);
 
-PlayersCtrl.$inject = ['$http', '$stateParams'];
-function PlayersCtrl($http, $stateParams){
+
+PlayersIndexCtrl.$inject = ['Player'];
+function PlayersIndexCtrl(Player){
   const vm = this;
-  vm.all = [];
-  vm.newPlayer = {};
-  vm.playersShow = playersShow;
 
-  playerIndex();
+  vm.all = Player.query();
+}
+  //////////////////////////////////////////////////////////////////
 
-  function playerIndex() {
-    $http.get('/api/players')
-    .then((response) => {
-      vm.all = response.data;
-    });
+  BirdsNewCtrl.$inject = ['Bird', '$state'];
+  function BirdsNewCtrl(Bird, $state) {
+    const vm = this;
+    vm.bird = {};
+
+    // const Bird = new Bird('/api/birds/:id', { id: '@id'});
+
+    function birdsCreate() {
+      Bird
+        .save(vm.bird)
+        .$promise
+        .then(() => $state.go('birdsIndex'));
+    }
+    vm.create = birdsCreate;
   }
 
-  function playersShow(){
-    return vm.players[$stateParams.id];
+  //////////////////////////////////////////////////////////////////////////
+
+PlayersShowCtrl.$inject =['Player', '$stateParams', '$state'];
+function PlayersShowCtrl(Player, $stateParams, $state) {
+  const vm = this;
+  vm.player = {};
+  vm.player = Player.get($stateParams);
+
+  function deletePlayer() {
+    vm.player
+      .$remove()
+      .then(() => $state.go('playerIndex'));
   }
 
-  vm.playersCreate = playersCreate;
+  vm.delete = deletePlayer;
 
-  function playersCreate(){
-    $http
-      .post('http://localhost:3000/players', vm.newPlayer)
-      .then(response => {
-        vm.all.push(response.data);
-        vm.newPlayer = {};
-      });
+}
 
-  }
+  ///////////////////////////////////////////////////////////////////////////
 
-  vm.playersDelete = playersDelete;
+  BirdsEditCtrl.$inject = ['Bird', '$stateParams', '$state'];
+  function BirdsEditCtrl(Bird, $stateParams, $state) {
+    const vm = this;
 
-  function playersDelete(player){
-    $http
-      .delete(`http://localhost:3000/players/${player.id}`)
-      .then(() => {
-        const index = vm.all.indexOf(player);
-        vm.all.splice(index, 1);
-      });
+    vm.bird = Bird.get($stateParams);
+
+    function birdsUpdate() {
+      vm.bird
+        .$update()
+        .then(() => $state.go('birdsShow', $stateParams));
+    }
+    vm.update = birdsUpdate;
   }
 
 
 
-} /// end of http playerctrl function
+
+
+
+
+
+// PlayersCtrl.$inject = ['$http', '$stateParams'];
+// function PlayersCtrl($http, $stateParams){
+//   const vm = this;
+//   vm.all = [];
+//   vm.newPlayer = {};
+//   vm.playersShow = playersShow;
+//
+//   playerIndex();
+//
+//   function playerIndex() {
+//     $http.get('/api/players')
+//     .then((response) => {
+//       vm.all = response.data;
+//     });
+//   }
+// ////////////////////////////////////////////////////
+//
+//   function playersShow(){
+//     return vm.players[$stateParams.id];
+//   }
+//
+// ///////////////////////////////////////////////////////////
+//   vm.playersCreate = playersCreate;
+//
+//   function playersCreate(){
+//     $http
+//       .post('http://localhost:3000/players', vm.newPlayer)
+//       .then(response => {
+//         vm.all.push(response.data);
+//         vm.newPlayer = {};
+//       });
+//
+//   }
+// ///////////////////////////////////////////////////////////////////
+//   vm.playersDelete = playersDelete;
+//
+//   function playersDelete(player){
+//     $http
+//       .delete(`http://localhost:3000/players/${player.id}`)
+//       .then(() => {
+//         const index = vm.all.indexOf(player);
+//         vm.all.splice(index, 1);
+//       });
+//   }
+//
+//
+//
+// } /// end of http playerctrl function

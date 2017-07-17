@@ -7,17 +7,19 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('home', {
+    .state('playersIndex', {
       url: '/',
-      templateUrl: '/js/views/home.html'
+      templateUrl: '/js/views/home.html',
+      controller: 'PlayersIndexCtrl as playersIndex'
     })
     .state('about', {
       url: '/about',
       templateUrl: '/js/views/about.html'
     })
-    .state('show', {
+    .state('playersShow', {
       url: '/players/:id',
-      templateUrl: '/js/views/show.html'
+      templateUrl: '/js/views/show.html',
+      controller: 'PlayersShowCtrl as playersShow'
     });
 
   $urlRouterProvider.otherwise('/');

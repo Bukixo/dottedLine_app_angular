@@ -1,8 +1,8 @@
 <h1>dotted line - home page</h1>
 sdf
 <ul>
-  <li ng-repeat="player in players.all"> <a ui-sref="show({ id: player.id })"> {{ player.name }} </a>
-    <button ng-click="players.playersDelete(player)">Delete</button></li>
+  <li ng-repeat="player in playersIndex.all"> <a ui-sref="playersShow({ id: player.id })"> {{ player.name }} </a>
+    <!-- <button ng-click="players.playersDelete(player)">Delete</button></li> -->
 </ul>
 
 <!-- <p>About to add: {{ players.newPlayer }}</p>
