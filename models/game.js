@@ -33,4 +33,8 @@ gameSchema.methods.playedBy = function gamePlayedBy(player) {
   return player.id === this.game_players.toString();
 };
 
+// gameSchema.methods.gameHome = function gameHome() {
+//   return `${this.home[0]}`;
+// };
+
 module.exports = mongoose.model('Game', gameSchema);

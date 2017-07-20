@@ -6,6 +6,6 @@ angular
 PlayersIndexCtrl.$inject = ['Player'];
 function PlayersIndexCtrl(Player){
   const vm = this;
-
   vm.all = Player.query();
+  //console.log(vm.all);
 }

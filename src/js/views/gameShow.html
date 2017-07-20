@@ -1,9 +1,11 @@
 <h1>show page for games</h1>
 
 
-{{gamesShow.game.name}}
-{{gamesShow.game.home.name}}
-{{gamesShow.game.away.name.game_players[1]}}
+game name: {{gamesShow.game.name}} </br>
+game home: {{gamesShow.game.home.name}}</br>
+game home 2: {{ gamesShow.gameHome }} <br>
+game away: {{gamesShow.game.away.name}}</br>
+game player id: {{gamesShow.game.away.game_players.data.i}}</br>
 
 <button ng-click="gamesShow.delete()">Delete</button>
 <a ui-sref="gamesEdit({ id:gamesShow.player.id })">EDIT</a>
